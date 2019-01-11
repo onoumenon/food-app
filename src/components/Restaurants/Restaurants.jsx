@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getRestaurants } from "../services/restaurantService";
+import { getRestaurants } from "../../services/restaurantService";
 
 const cardStyle = {
   width: "20rem",
