@@ -15,7 +15,6 @@ function Restaurant(props) {
       <div className="card-footer text-muted">
         <a href="#" className="btn btn-primary btn-sm">Order</a>
       </div>
-
     </div>  
   )
 }

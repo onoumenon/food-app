@@ -11,10 +11,10 @@ class Restaurants extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          {this.state.restaurants.map(restaurant => (
-            <div className="card-col">
-              <Restaurant details={restaurant}/>
-            </div>
+          {this.state.restaurants.map((restaurant, index) => (
+          <div className="card-col" key={restaurant._id}>
+              <Restaurant details={restaurant} />
+          </div>
           ))}
         </div>
       </div>
