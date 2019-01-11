@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { getRestaurants } from "../../services/restaurantService";
 import Restaurant from './Restaurant';
-
-const cardStyle = {
-  width: "20rem"
-};
+import "./Restaurants.scss"
 
 class Restaurants extends Component {
   state = {
@@ -15,7 +12,7 @@ class Restaurants extends Component {
       <div className="container-fluid">
         <div className="row">
           {this.state.restaurants.map(restaurant => (
-            <div className="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex">
+            <div className="card-col">
               <Restaurant details={restaurant}/>
             </div>
           ))}

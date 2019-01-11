@@ -1,13 +1,10 @@
 import React from 'react'
-
-const cardStyle = {
-  width: "20rem"
-};
+import './Restaurant.scss'
 
 function Restaurant(props) {
   const {details} = props
   return (
-    <div className="card my-3" style={cardStyle}>
+    <div className="card my-3" >
       <img src={details.imageUrl} className="card-img-top img-fluid" alt="restaurant image"/>
       <div className="card-body">
         <h5 className="card-title">{details.name}</h5>
