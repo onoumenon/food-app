@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./components/HomePage/HomePage";
 import OrderPage from "./components/OrderPage/OrderPage";
@@ -15,6 +15,7 @@ class App extends Component {
             <Route path="/home" component={HomePage} />
             <Route path="/orders" component={OrderPage} />
             <Route path="/admin" component={AdminPage} />
+            <Redirect from="/" to="/home" />
           </Switch>
         </div>
       </BrowserRouter>
