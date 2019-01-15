@@ -11,12 +11,14 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <NavBar />
-          <Switch>
-            <Route path="/home" component={HomePage} />
-            <Route path="/orders" component={OrderPage} />
-            <Route path="/admin" component={AdminPage} />
-            <Redirect from="/" to="/home" />
-          </Switch>
+          <main className="container">
+            <Switch>
+              <Route path="/home" component={HomePage} />
+              <Route path="/orders" component={OrderPage} />
+              <Route path="/admin" component={AdminPage} />
+              <Redirect from="/" to="/home" />
+            </Switch>
+          </main>
         </div>
       </BrowserRouter>
     );
