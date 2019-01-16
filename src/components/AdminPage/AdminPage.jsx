@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from 'react-router-dom';
 import RestaurantTable from "../RestaurantTable/RestaurantTable"
 import { getRestaurants, deleteRestaurant } from '../../services/restaurantService';
 
@@ -17,7 +18,7 @@ class AdminPage extends Component {
     return (
       <div data-testid="admin-page">
         <div className="row justify-content-end">
-          <a className="btn btn-primary btn-sm mb-2" href="">Create New</a>
+          <Link className="btn btn-primary btn-sm mb-2" to="/restaurants/new">Create New</Link>
         </div>
         <div className="row">
           <RestaurantTable restaurants={restaurants} handleDelete={this.handleDelete}/>
