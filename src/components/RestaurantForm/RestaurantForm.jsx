@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getCuisines } from "../../services/cuisineService";
+import Input from "../common/Input/Input"
 
 class RestaurantForm extends Component {
   state = {
@@ -15,30 +16,10 @@ class RestaurantForm extends Component {
       <div>
         <h1>Restaurant Form</h1>
         <form>
-          <div className="form-group">
-            <label htmlFor="name-input">Name</label>
-            <input type="text" className="form-control" id="name-input" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="address-input">Address</label>
-            <input type="text" className="form-control" id="address-input" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="opening-time-input">Opening Time</label>
-            <input
-              type="text"
-              className="form-control"
-              id="opening-time-input"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="closing-time-input">Closing Time</label>
-            <input
-              type="text"
-              className="form-control"
-              id="closing-time-input"
-            />
-          </div>
+          <Input name="name" label="Name"/>
+          <Input name="address" label="Address" />
+          <Input name="opening-time-input" label="Opening Time" type="text" />
+          <Input name="closing-time-input" label="Closing Time" type="text" />
           <div className="form-group">
             <label htmlFor="cuisine-input">Cuisine</label>
             <select defaultValue="" className="custom-select">
@@ -50,19 +31,8 @@ class RestaurantForm extends Component {
               ))}
             </select>
           </div>
-          <div className="form-group">
-            <label htmlFor="price-input">Average Price</label>
-            <input
-              type="number"
-              min="1"
-              className="form-control"
-              id="price-input"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="image-url-input">Image URL</label>
-            <input type="text" className="form-control" id="image-url-input" />
-          </div>
+          <Input name="average-price" label="Average Price" type="number" />
+          <Input name="image-url" label="Image URL" />
           <button className="btn btn-primary btn-sm" onClick={this.handleClick}>
             Save
           </button>
