@@ -1,6 +1,6 @@
 import React from "react";
 
-function Table({restaurants, handleDelete}) {
+function RestaurantTable({restaurants, handleDelete}) {
   const sortedList =  restaurants.sort((first, second) => {
     if (first.name < second.name) return -1;
     if (first.name > second.name) return 1;
@@ -35,4 +35,4 @@ function Table({restaurants, handleDelete}) {
   );
 }
 
-export default Table;
+export default RestaurantTable;

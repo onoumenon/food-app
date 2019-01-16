@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Table from "../Table/Table"
+import RestaurantTable from "../RestaurantTable/RestaurantTable"
 import { getRestaurants, deleteRestaurant } from '../../services/restaurantService';
 
 class AdminPage extends Component {
@@ -16,7 +16,7 @@ class AdminPage extends Component {
     const {restaurants} = this.state;
     return (
       <div data-testid="admin-page">
-        <Table restaurants={restaurants} handleDelete={this.handleDelete}/>
+        <RestaurantTable restaurants={restaurants} handleDelete={this.handleDelete}/>
       </div>
     )
   }
