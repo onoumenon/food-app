@@ -1,6 +1,12 @@
 import React from "react";
 
 function Table({restaurants}) {
+  const sortedList =  restaurants.sort((first, second) => {
+    if (first.name < second.name) return -1;
+    if (first.name > second.name) return 1;
+    return 0;
+  });
+
   return (
     <table className="table">
       <thead>
@@ -14,7 +20,7 @@ function Table({restaurants}) {
         </tr>
       </thead>
       <tbody>
-        {restaurants.map( restaurant => (
+        {sortedList.map( restaurant => (
           <tr key={restaurant._id}>
             <td>{restaurant.name}</td>
             <td>{restaurant.address}</td>
