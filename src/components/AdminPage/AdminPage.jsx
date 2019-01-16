@@ -1,9 +1,10 @@
 import React from "react";
+import Table from "../Table/Table"
 
 function AdminPage() {
   return (
     <div data-testid="admin-page">
-      <h1>Admin Page</h1>
+      <Table />
     </div>
   )
 }
