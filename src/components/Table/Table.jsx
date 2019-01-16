@@ -1,6 +1,6 @@
 import React from "react";
 
-function Table() {
+function Table({restaurants}) {
   return (
     <table className="table">
       <thead>
@@ -14,14 +14,16 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>The Burger Bar by Fatboy's Concepts (Boat Quay)</td>
-          <td>35 Boat Quay, 049824 Singapore</td>
-          <td>11:00 AM - 10:30 PM</td>
-          <td>Western</td>
-          <td>$25</td>
-          <td><button className="btn btn-danger btn-sm">Delete</button></td>
-        </tr>
+        {restaurants.map( restaurant => (
+          <tr key={restaurant._id}>
+            <td>{restaurant.name}</td>
+            <td>{restaurant.address}</td>
+            <td>{restaurant.openingTime} - {restaurant.closingTime}</td>
+            <td>{restaurant.cuisine.name}</td>
+            <td>${restaurant.averagePrice.toFixed(2)}</td>
+            <td><button className="btn btn-danger btn-sm">Delete</button></td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
