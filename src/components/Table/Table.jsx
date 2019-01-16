@@ -2,7 +2,7 @@ import React from "react";
 
 function Table() {
   return (
-    <table className="table mt-5">
+    <table className="table">
       <thead>
         <tr>
           <th>Name</th>
