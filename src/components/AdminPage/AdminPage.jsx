@@ -16,7 +16,12 @@ class AdminPage extends Component {
     const {restaurants} = this.state;
     return (
       <div data-testid="admin-page">
-        <RestaurantTable restaurants={restaurants} handleDelete={this.handleDelete}/>
+        <div className="row justify-content-end">
+          <a className="btn btn-primary btn-sm mb-2" href="">Create New</a>
+        </div>
+        <div className="row">
+          <RestaurantTable restaurants={restaurants} handleDelete={this.handleDelete}/>
+        </div>
       </div>
     )
   }
