@@ -65,11 +65,13 @@ class RestaurantForm extends Component {
             name="openingTime"
             label="Opening Time"
             onChange={this.handleChange}
+            value={openingTime}
           />
           <TimeInput
             name="closingTime"
             label="Closing Time"
             onChange={this.handleChange}
+            value={closingTime}
           />
           <SelectInput
             name="cuisineId"
