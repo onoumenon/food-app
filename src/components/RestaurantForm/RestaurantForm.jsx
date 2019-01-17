@@ -76,6 +76,7 @@ class RestaurantForm extends Component {
             label="Cuisine"
             options={cuisines}
             onChange={this.handleChange}
+            value={cuisineId}
           />
           <Input
             name="averagePrice"
