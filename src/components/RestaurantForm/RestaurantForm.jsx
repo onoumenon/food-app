@@ -24,12 +24,12 @@ class RestaurantForm extends Component {
     const restaurantFound = getRestaurants().find(
       restaurant => restaurant._id === id
     );
-
-    restaurantFound.cuisineId = restaurantFound.cuisine._id
-    delete restaurantFound.cuisine
-
     if (!restaurantFound) return;
-    this.setState({ data: { ...restaurantFound } });
+    const newRestaurant = {...restaurantFound}
+    newRestaurant.cuisineId = newRestaurant.cuisine._id
+    delete newRestaurant.cuisine
+
+    this.setState({ data: newRestaurant });
   }
 
   handleSubmit = e => {
@@ -37,7 +37,7 @@ class RestaurantForm extends Component {
     const { cuisineId, averagePrice } = this.state.data;
     const cuisine = getCuisines().find(cuisine => cuisine._id === cuisineId);
 
-    const restaurant = { ...this.state.data };
+    let restaurant = { ...this.state.data };
     delete restaurant.cuisineId;
     restaurant.cuisine = cuisine;
     restaurant.averagePrice = parseFloat(averagePrice);
