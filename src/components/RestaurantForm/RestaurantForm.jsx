@@ -26,7 +26,7 @@ class RestaurantForm extends Component {
     const restaurant = {...this.state.data}; 
     delete restaurant.cuisineId;    
     restaurant.cuisine = cuisine
-    restaurant.averagePrice = parseInt(averagePrice)
+    restaurant.averagePrice = parseFloat(averagePrice)
 
     saveRestaurant(restaurant);
     this.props.history.replace(this.props.returnPath);
