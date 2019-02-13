@@ -89,7 +89,6 @@ class RestaurantForm extends Component {
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateField(input);
-    console.log(errorMessage)
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
     
@@ -134,12 +133,14 @@ class RestaurantForm extends Component {
             type="number"
             onChange={this.handleChange}
             value={averagePrice}
+            error={errors.averagePrice}
           />
           <Input
             name="imageUrl"
             label="Image URL"
             onChange={this.handleChange}
             value={imageUrl}
+            error={errors.imageUrl}
           />
           <button disabled={this.validate()} className="btn btn-primary btn-sm">Save</button>
         </form>
