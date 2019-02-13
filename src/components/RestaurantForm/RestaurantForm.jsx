@@ -20,7 +20,7 @@ class RestaurantForm extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const id  = this.props.match ? this.props.match.params.id : null;
     const restaurantFound = getRestaurants().find(
       restaurant => restaurant._id === id
     );
