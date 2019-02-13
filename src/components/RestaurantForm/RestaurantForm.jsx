@@ -53,7 +53,9 @@ class RestaurantForm extends Component {
     const { cuisineId, averagePrice } = this.state.data;
     const cuisine = getCuisines().find(cuisine => cuisine._id === cuisineId);
 
-    this.validate();
+    const errors = this.validate();
+    this.setState({ errors: errors || {} });
+    if (errors) return;
 
     let restaurant = { ...this.state.data };
     delete restaurant.cuisineId;
@@ -66,9 +68,14 @@ class RestaurantForm extends Component {
 
   validate = () => {
     const data = { ...this.state.data };
-    const options = { abortEarly: false };
-    const result = Joi.validate(data, this.schema, options);
-    console.log(result);
+    const options = {abortEarly: false}
+    const {error} = Joi.validate(data, this.schema, options)
+    if(!error) return null;
+    const errors = error.details.reduce((acc, item) => {
+      acc[item.path[0]] = item.message;
+      return acc;
+    }, {});
+    return errors;
   }
 
   handleChange = ({ currentTarget: input }) => {
