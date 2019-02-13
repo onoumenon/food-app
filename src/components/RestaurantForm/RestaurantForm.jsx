@@ -67,6 +67,13 @@ class RestaurantForm extends Component {
     this.props.history.replace(this.props.returnPath);
   };
 
+  validateField = ({ name, value }) => {
+    const obj = {[name]: value}
+    const schema = {[name]: this.schema[name]};
+    const {error} = Joi.validate(obj, schema);
+    return error ? error.details[0].message : null;
+  };
+
   validate = () => {
     const data = { ...this.state.data };
     const options = {abortEarly: false}
@@ -80,20 +87,27 @@ class RestaurantForm extends Component {
   }
 
   handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateField(input);
+    console.log(errorMessage)
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+    
     const data = { ...this.state.data };
     data[input.name] = input.value;
-    this.setState({ data });
+
+    this.setState({ data, errors });
   };
 
   render() {
-    const { cuisines } = this.state;
+    const { cuisines, errors } = this.state;
     const { name, address, openingTime, closingTime, cuisineId, averagePrice, imageUrl } = this.state.data;
     return (
       <div data-testid="create-page">
         <h3>{ name ? "Edit Restaurant" : "New Restaurant"}</h3>
         <form onSubmit={this.handleSubmit}>
-          <Input name="name" label="Name" onChange={this.handleChange} value={name}/>
-          <Input name="address" label="Address" onChange={this.handleChange} value={address}/>
+          <Input name="name" label="Name" onChange={this.handleChange} value={name} error={errors.name}/>
+          <Input name="address" label="Address" onChange={this.handleChange} value={address} error={errors.address}/>
           <TimeInput
             name="openingTime"
             label="Opening Time"
