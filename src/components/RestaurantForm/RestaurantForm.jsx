@@ -17,7 +17,8 @@ class RestaurantForm extends Component {
       cuisineId: "",
       averagePrice: "",
       imageUrl: ""
-    }
+    },
+    errors: {}
   };
 
   schema = {
@@ -125,7 +126,7 @@ class RestaurantForm extends Component {
             onChange={this.handleChange}
             value={imageUrl}
           />
-          <button className="btn btn-primary btn-sm">Save</button>
+          <button disabled={this.validate()} className="btn btn-primary btn-sm">Save</button>
         </form>
       </div>
     );
