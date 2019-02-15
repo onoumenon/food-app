@@ -8,10 +8,11 @@ class HomePage extends Component {
     restaurants: getRestaurants()
   };
   render() {
+    const { restaurants } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
-          {this.state.restaurants.map((restaurant, index) => (
+          {restaurants.map(restaurant => (
             <div className="card-col" key={restaurant._id}>
               <Restaurant details={restaurant} />
             </div>
