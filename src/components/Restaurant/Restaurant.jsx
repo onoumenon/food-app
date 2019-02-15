@@ -22,9 +22,7 @@ function Restaurant(props) {
       </div>
 
       <div className="card-footer text-muted">
-        <a href="#" className="btn btn-primary btn-sm">
-          Order
-        </a>
+        <button className="btn btn-primary btn-sm">Order</button>
       </div>
     </div>
   );
