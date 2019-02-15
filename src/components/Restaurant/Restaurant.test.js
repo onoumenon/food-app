@@ -13,7 +13,7 @@ test("renders a restaurant with an image, name, cuisine, and opening hours", () 
     imageUrl: "images/restaurants/5c342ac9fc13ae39f8000000.jpg"
   };
   const { getByText, getByAltText } = render(<Restaurant details={details} />);
-  expect(getByAltText("restaurant image")).toHaveAttribute(
+  expect(getByAltText("restaurant")).toHaveAttribute(
     "src",
     details.imageUrl
   );
