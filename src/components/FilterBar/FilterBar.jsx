@@ -1,23 +1,25 @@
 import React from "react";
 
 const FilterBar = props => {
+  const { cuisines, selected, handleClick } = props;
+  const getClass = (cuisine, selected) => {
+    if (!selected && cuisine.name === "All") return "btn btn-primary";
+    if (selected && cuisine._id === selected._id) return "btn btn-primary";
+    return "btn btn-outline-primary";
+  };
+
   return (
     <div className="btn-group" role="group">
-      <button type="button" className="btn btn-primary">
-        All
-      </button>
-      <button type="button" className="btn btn-outline-primary">
-        Western
-      </button>
-      <button type="button" className="btn btn-outline-primary">
-        Chinese
-      </button>
-      <button type="button" className="btn btn-outline-primary">
-        Japanese
-      </button>
-      <button type="button" className="btn btn-outline-primary">
-        Thai
-      </button>
+      {cuisines.map(cuisine => (
+        <button
+          key={cuisine._id}
+          type="button"
+          className={getClass(cuisine, selected)}
+          onClick={() => handleClick(cuisine)}
+        >
+          {cuisine.name}
+        </button>
+      ))}
     </div>
   );
 };
