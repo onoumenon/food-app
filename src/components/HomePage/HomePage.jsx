@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getRestaurants } from "../../services/restaurantService";
 import Restaurant from "../Restaurant/Restaurant";
+import FilterBar from "../FilterBar/FilterBar";
 import "./HomePage.scss";
 
 class HomePage extends Component {
@@ -12,15 +13,9 @@ class HomePage extends Component {
     return (
       <div className="container">
         <div className="row">
-            <div className="col-4 mx-auto mt-3">
-              <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" className="btn btn-primary">All</button>
-                <button type="button" className="btn btn-outline-primary">Western</button>
-                <button type="button" className="btn btn-outline-primary">Chinese</button>
-                <button type="button" className="btn btn-outline-primary">Japanese</button>
-                <button type="button" className="btn btn-outline-primary">Thai</button>
-              </div>
-            </div>
+          <div className="col-4 mx-auto mt-3">
+            <FilterBar />
+          </div>
         </div>
         <div className="row">
           {restaurants.map(restaurant => (
