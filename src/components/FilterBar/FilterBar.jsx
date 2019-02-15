@@ -16,6 +16,7 @@ const FilterBar = props => {
           type="button"
           className={getClass(cuisine, selected)}
           onClick={() => handleClick(cuisine)}
+          data-testid={`filter-btn-${cuisine.name.toLowerCase()}`}
         >
           {cuisine.name}
         </button>
