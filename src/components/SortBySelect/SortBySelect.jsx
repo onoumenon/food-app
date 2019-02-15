@@ -8,7 +8,8 @@ const SortBySelect = props => {
       <select
         value={selected}
         onChange={handleSelect}
-        name="sort-by-select"
+        id="sort-by-select"
+        data-testid="sort-by-select"
         className="btn btn-primary dropdown-toggle mx-2"
       >
         {options.map((option, index) => (
