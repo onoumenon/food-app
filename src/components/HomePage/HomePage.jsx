@@ -10,7 +10,11 @@ class HomePage extends Component {
   state = {
     restaurants: getRestaurants(),
     cuisines: [getDefaultCuisine(), ...getCuisines()],
-    selectedCuisine: null
+    selectedCuisine: null,
+    sortByList: [
+      { name: "Restaurant Name", value: "name" },
+      { name: "Average Price", value: "averagePrice" }
+    ]
   };
 
   handleCuisineSelect = cuisine => {
@@ -21,7 +25,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { restaurants, cuisines, selectedCuisine } = this.state;
+    const { restaurants, cuisines, selectedCuisine, sortByList } = this.state;
     const filteredRestaurantList =
       selectedCuisine && selectedCuisine._id
         ? restaurants.filter(res => res.cuisine._id === selectedCuisine._id)
@@ -39,7 +43,7 @@ class HomePage extends Component {
           </div>
 
           <div className="col-auto mt-3">
-            <SortBySelect />
+            <SortBySelect list={sortByList} />
           </div>
         </div>
 
