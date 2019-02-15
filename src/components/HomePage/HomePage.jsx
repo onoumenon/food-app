@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { getRestaurants } from "../../services/restaurantService";
-import Restaurant from './Restaurant';
-import "./Restaurants.scss"
+import Restaurant from "../Restaurant/Restaurant";
+import "./HomePage.scss";
 
-class Restaurants extends Component {
+class HomePage extends Component {
   state = {
     restaurants: getRestaurants()
   };
@@ -12,9 +12,9 @@ class Restaurants extends Component {
       <div className="container-fluid">
         <div className="row">
           {this.state.restaurants.map((restaurant, index) => (
-          <div className="card-col" key={restaurant._id}>
+            <div className="card-col" key={restaurant._id}>
               <Restaurant details={restaurant} />
-          </div>
+            </div>
           ))}
         </div>
       </div>
@@ -22,4 +22,4 @@ class Restaurants extends Component {
   }
 }
 
-export default Restaurants;
+export default HomePage;

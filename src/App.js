@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Restaurants from "./components/Restaurants/Restaurants";
+import HomePage from "./components/HomePage/HomePage";
 
 class App extends Component {
   render() {
     return (
-        <Restaurants />
+        <HomePage />
     ) 
   }
 }
