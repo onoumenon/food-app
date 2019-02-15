@@ -1,12 +1,13 @@
 import React from "react";
 
 const SortBySelect = props => {
-  const { options, selected } = props;
+  const { options, selected, handleSelect } = props;
   return (
     <div>
       <label htmlFor="sort-by-select">Sort By</label>
       <select
         value={selected}
+        onChange={handleSelect}
         name="sort-by-select"
         className="btn btn-primary dropdown-toggle mx-2"
       >

@@ -25,6 +25,26 @@ class HomePage extends Component {
     });
   };
 
+  handleSortSelect = event => {
+    const selectedOption = event.target.value;
+    this.setState({ selectedSortBy: selectedOption });
+  };
+
+  filterAndSortRestaurantList = () => {
+    const { restaurants, selectedCuisine, selectedSortBy } = this.state;
+
+    let filteredByCuisine =
+      selectedCuisine && selectedCuisine._id
+        ? restaurants.filter(res => res.cuisine._id === selectedCuisine._id)
+        : restaurants;
+
+    return filteredByCuisine.sort((first, second) => {
+      if (first[selectedSortBy] < second[selectedSortBy]) return -1;
+      if (first[selectedSortBy] > second[selectedSortBy]) return 1;
+      return 0;
+    });
+  };
+
   render() {
     const {
       cuisines,
@@ -32,10 +52,7 @@ class HomePage extends Component {
       sortByOptions,
       selectedSortBy
     } = this.state;
-    const filteredRestaurantList =
-      selectedCuisine && selectedCuisine._id
-        ? restaurants.filter(res => res.cuisine._id === selectedCuisine._id)
-        : restaurants;
+    const filteredRestaurantList = this.filterAndSortRestaurantList();
 
     return (
       <div className="container">
@@ -49,7 +66,11 @@ class HomePage extends Component {
           </div>
 
           <div className="col-auto mt-3">
-            <SortBySelect options={sortByOptions} selected={selectedSortBy} />
+            <SortBySelect
+              options={sortByOptions}
+              selected={selectedSortBy}
+              handleSelect={this.handleSortSelect}
+            />
           </div>
         </div>
 
