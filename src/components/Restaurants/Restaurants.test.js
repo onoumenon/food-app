@@ -11,7 +11,7 @@ const sampleData = [{
   address: "35 Boat Quay, 049824 Singapore",
   openingTime: "11:00 AM",
   closingTime: "10:30 PM",
-  cusine: { _id: "5c3430ecfc13ae122d000000", name: "Western" },
+  cuisine: { _id: "5c3430ecfc13ae122d000000", name: "Western" },
   imageUrl: "images/restaurants/5c342ac9fc13ae39f8000000.jpg"
 
 },
@@ -21,7 +21,7 @@ const sampleData = [{
   address: "120 Maxwell Road, Tanjong Pagar Xchange, B1-31, 069119 Singapore",
   openingTime: "12:00 PM",
   closingTime: "9:30 PM",
-  cusine: { _id: "5c3430ecfc13ae122d000000", name: "Western" },
+  cuisine: { _id: "5c3430ecfc13ae122d000000", name: "Western" },
   imageUrl: "images/restaurants/5c342ac9fc13ae39f8000001.jpg"
 }]
 

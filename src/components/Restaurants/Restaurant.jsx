@@ -8,7 +8,7 @@ function Restaurant(props) {
       <img src={details.imageUrl} className="card-img-top img-fluid" alt="restaurant image"/>
       <div className="card-body">
         <h5 className="card-title">{details.name}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{details.cusine.name}</h6>
+        <h6 className="card-subtitle mb-2 text-muted">{details.cuisine.name}</h6>
         <p className="card-text"> {details.openingTime} - {details.closingTime}</p>
       </div>
 
