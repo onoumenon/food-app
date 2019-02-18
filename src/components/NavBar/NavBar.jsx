@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        NavBar
+        <i className="fas fa-utensils"> Food App </i>
       </Link>
       <button
         className="navbar-toggler"
