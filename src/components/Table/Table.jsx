@@ -1,6 +1,6 @@
 import React from "react";
 
-function Table({restaurants}) {
+function Table({restaurants, handleDelete}) {
   const sortedList =  restaurants.sort((first, second) => {
     if (first.name < second.name) return -1;
     if (first.name > second.name) return 1;
@@ -27,7 +27,7 @@ function Table({restaurants}) {
             <td>{restaurant.openingTime} - {restaurant.closingTime}</td>
             <td>{restaurant.cuisine.name}</td>
             <td>${restaurant.averagePrice.toFixed(2)}</td>
-            <td><button className="btn btn-danger btn-sm">Delete</button></td>
+            <td><button className="btn btn-danger btn-sm" onClick={() => handleDelete(restaurant._id)}>Delete</button></td>
           </tr>
         ))}
       </tbody>
