@@ -7,7 +7,10 @@ class RestaurantForm extends Component {
   state = {
     cuisines: getCuisines()
   };
-  handleClick = () => {
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("Creating a new restaurant")
     this.props.history.replace(this.props.returnPath);
   };
 
@@ -15,8 +18,8 @@ class RestaurantForm extends Component {
     const { cuisines } = this.state;
     return (
       <div>
-        <h1>Restaurant Form</h1>
-        <form>
+        <h3>New Restaurant</h3>
+        <form onSubmit={this.handleSubmit}>
           <Input name="name" label="Name" />
           <Input name="address" label="Address" />
           <Input name="opening-time-input" label="Opening Time" type="text" />
@@ -24,7 +27,7 @@ class RestaurantForm extends Component {
           <SelectInput name="cuisine" label="Cusine" options={cuisines} />
           <Input name="average-price" label="Average Price" type="number" />
           <Input name="image-url" label="Image URL" />
-          <button className="btn btn-primary btn-sm" onClick={this.handleClick}>
+          <button className="btn btn-primary btn-sm">
             Save
           </button>
         </form>
