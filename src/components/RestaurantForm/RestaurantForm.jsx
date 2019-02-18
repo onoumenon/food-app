@@ -52,7 +52,12 @@ class RestaurantForm extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="price-input">Average Price</label>
-            <input type="text" className="form-control" id="price-input" />
+            <input
+              type="number"
+              min="1"
+              className="form-control"
+              id="price-input"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="image-url-input">Image URL</label>
