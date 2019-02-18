@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getCuisines } from "../../services/cuisineService";
+import { saveRestaurant } from "../../services/restaurantService";
 import Input from "../common/Input/Input";
 import SelectInput from "../common/Input/SelectInput";
 
@@ -19,7 +20,15 @@ class RestaurantForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("Creating a new restaurant");
+    const {cuisineId, averagePrice} = this.state.data
+    const cuisine = getCuisines().find(cuisine => cuisine._id === cuisineId);
+    
+    const restaurant = {...this.state.data}; 
+    delete restaurant.cuisineId;    
+    restaurant.cuisine = cuisine
+    restaurant.averagePrice = parseInt(averagePrice)
+
+    saveRestaurant(restaurant);
     this.props.history.replace(this.props.returnPath);
   };
 
