@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getCuisines } from "../../services/cuisineService";
 import { saveRestaurant } from "../../services/restaurantService";
 import Input from "../common/Input/Input";
+import TimeInput from "../common/Input/TimeInput";
 import SelectInput from "../common/Input/SelectInput";
 
 class RestaurantForm extends Component {
@@ -46,16 +47,14 @@ class RestaurantForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <Input name="name" label="Name" onChange={this.handleChange} />
           <Input name="address" label="Address" onChange={this.handleChange} />
-          <Input
+          <TimeInput
             name="openingTime"
             label="Opening Time"
-            type="text"
             onChange={this.handleChange}
           />
-          <Input
+          <TimeInput
             name="closingTime"
             label="Closing Time"
-            type="text"
             onChange={this.handleChange}
           />
           <SelectInput
