@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import Homepage from "./components/Homepage/Homepage";
 
 class App extends Component {
   render() {
-    return <h1>Test Page</h1>;
+    return (
+      <React.Fragment>
+        <Homepage />
+      </React.Fragment>
+    );
   }
 }
 
