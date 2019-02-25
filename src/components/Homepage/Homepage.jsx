@@ -8,12 +8,10 @@ export class Homepage extends Component {
   };
   render() {
     return (
-      <div>
-        <ul>
-          {this.state.restaurants.map(item => (
-            <Restaurants key={item._id} item={item} />
-          ))}
-        </ul>
+      <div className="row">
+        {this.state.restaurants.map(item => (
+          <Restaurants key={item._id} item={item} />
+        ))}
       </div>
     );
   }

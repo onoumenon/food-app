@@ -4,9 +4,9 @@ import Homepage from "./components/Homepage/Homepage";
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
+      <main className="container">
         <Homepage />
-      </React.Fragment>
+      </main>
     );
   }
 }
