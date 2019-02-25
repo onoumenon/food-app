@@ -1,5 +1,5 @@
 import React from "react";
-import "./Restaurant.scss";
+// import "./Restaurants.scss";
 
 function Restaurants({ item }) {
   const {
@@ -14,11 +14,11 @@ function Restaurants({ item }) {
   } = item;
   const cardStyle = { width: "18rem" };
   return (
-    <div className="gridscss">
+    <div className=" col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex mb-3">
       <div className="card" style={cardStyle}>
         <img className="card-img-top" src={imageUrl} alt={name} />
         <div className="card-body">
-          <h5 className="card-title">{name}</h5>
+          <h5 className="card-title font-weight-bold">{name}</h5>
           <div className="card-text">
             <h6 className="text muted m-0">{cuisine.name}</h6>
             <h6 className="text muted">
