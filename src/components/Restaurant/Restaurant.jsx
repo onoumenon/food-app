@@ -1,10 +1,10 @@
 import React from "react";
-import "./Restaurant.scss";
 
 function Restaurant(props) {
   const { details } = props;
+  const width = { width: "20rem" };
   return (
-    <div className="card my-3">
+    <div className="card my-3" style={width}>
       <img
         src={details.imageUrl}
         className="card-img-top img-fluid"
@@ -22,7 +22,7 @@ function Restaurant(props) {
       </div>
 
       <div className="card-footer text-muted">
-        <button className="btn btn-primary btn-sm">Order</button>
+        <button className="btn btn-info btn-sm">Order</button>
       </div>
     </div>
   );
