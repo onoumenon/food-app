@@ -1,24 +1,27 @@
 import React from "react";
-import "./Restaurant.scss";
 
-function Restaurant(props) {
-  const { details } = props;
+function Restaurant({ details }) {
+  const {
+    name,
+    imageUrl,
+    cuisine,
+    openingTime,
+    closingTime,
+    averagePrice
+  } = details;
+  const width = { width: "20rem" };
   return (
-    <div className="card my-3">
-      <img
-        src={details.imageUrl}
-        className="card-img-top img-fluid"
-        alt="restaurant"
-      />
+    <div className="card my-3" style={width}>
+      <img src={imageUrl} className="card-img-top img-fluid" alt="restaurant" />
       <div className="card-body">
-        <h5 className="card-title">{details.name}</h5>
+        <h5 className="card-title font-weight-bold">{name}</h5>
+        <h6 className="card-subtitle mb-2 text-muted">{cuisine.name}</h6>
         <h6 className="card-subtitle mb-2 text-muted">
-          {details.cuisine.name}
+          {openingTime} - {closingTime}
         </h6>
-        <p className="card-text">
-          {" "}
-          {details.openingTime} - {details.closingTime}
-        </p>
+        <h6 className="card-subtitle mb-2 text-muted">
+          Average Price: ${averagePrice}
+        </h6>
       </div>
 
       <div className="card-footer text-muted">

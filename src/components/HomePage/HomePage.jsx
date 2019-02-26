@@ -3,13 +3,14 @@ import { getRestaurants } from "../../services/restaurantService";
 import { getCuisines, getDefaultCuisine } from "../../services/cuisineService";
 import Restaurant from "../Restaurant/Restaurant";
 import FilterBar from "../FilterBar/FilterBar";
-import "./HomePage.scss";
+import SortBySelect from "./../SortBySelect/SortBySelect";
 
 class HomePage extends Component {
   state = {
     restaurants: getRestaurants(),
     cuisines: [getDefaultCuisine(), ...getCuisines()],
-    selectedCuisine: null
+    selectedCuisine: null,
+    selectedSort: "name"
   };
 
   handleCuisineSelect = cuisine => {
@@ -19,28 +20,49 @@ class HomePage extends Component {
     });
   };
 
+  handleSortSelect = event => {
+    this.setState({ selectedSort: event.target.value });
+  };
+
   render() {
-    const { restaurants, cuisines, selectedCuisine } = this.state;
+    const { restaurants, cuisines, selectedCuisine, selectedSort } = this.state;
+
     const filteredRestaurantList =
       selectedCuisine && selectedCuisine._id
         ? restaurants.filter(res => res.cuisine._id === selectedCuisine._id)
         : restaurants;
 
+    const sortedFilteredRestaurantList = filteredRestaurantList.sort(
+      (first, second) => {
+        if (first[selectedSort] < second[selectedSort]) return -1;
+        if (first[selectedSort] > second[selectedSort]) return 1;
+        return 0;
+      }
+    );
+
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-4 mx-auto mt-3">
+        <div className="row mt-3">
+          <div className="col-sm-6 col-md-6 d-inline-flex justify-content-between">
             <FilterBar
               cuisines={cuisines}
               selected={selectedCuisine}
               handleClick={this.handleCuisineSelect}
             />
           </div>
+          <div className="d-inline-flex col-sm-6 col-md-6 justify-content-md-end">
+            <SortBySelect
+              selectedSort={this.state.selectedSort}
+              handleSortSelect={this.handleSortSelect}
+            />
+          </div>
         </div>
-
         <div className="row">
-          {filteredRestaurantList.map(restaurant => (
-            <div className="card-col" key={restaurant._id}>
+          {sortedFilteredRestaurantList.map(restaurant => (
+            <div
+              className="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center"
+              key={restaurant._id}
+            >
               <Restaurant details={restaurant} />
             </div>
           ))}
