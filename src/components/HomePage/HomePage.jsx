@@ -10,6 +10,10 @@ class HomePage extends Component {
     restaurants: getRestaurants(),
     cuisines: [getDefaultCuisine(), ...getCuisines()],
     selectedCuisine: null,
+    sortByOptions: [
+      { name: "Restaurant Name", value: "name" },
+      { name: "Average Price", value: "averagePrice" }
+    ],
     selectedSort: "name"
   };
 
@@ -25,7 +29,13 @@ class HomePage extends Component {
   };
 
   render() {
-    const { restaurants, cuisines, selectedCuisine, selectedSort } = this.state;
+    const {
+      restaurants,
+      cuisines,
+      selectedCuisine,
+      selectedSort,
+      sortByOptions
+    } = this.state;
 
     const filteredRestaurantList =
       selectedCuisine && selectedCuisine._id
@@ -64,6 +74,7 @@ class HomePage extends Component {
           </div>
           <div className="d-inline-flex col-sm-6 col-md-6 justify-content-md-end">
             <SortBySelect
+              options={sortByOptions}
               selectedSort={this.state.selectedSort}
               handleSortSelect={this.handleSortSelect}
             />

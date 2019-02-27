@@ -1,6 +1,6 @@
 import React from "react";
 
-function SortBySelect({ selectedSort, handleSortSelect }) {
+function SortBySelect({ selectedSort, handleSortSelect, options }) {
   return (
     <div>
       <label htmlFor="sortBy" className="mr-1">
@@ -12,12 +12,11 @@ function SortBySelect({ selectedSort, handleSortSelect }) {
         onChange={handleSortSelect}
         value={selectedSort}
       >
-        <option value="name" className="dropdown-item">
-          Restaurant Name
-        </option>
-        <option value="averagePrice" className="dropdown-item">
-          Average Price
-        </option>
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.name}
+          </option>
+        ))}
       </select>
     </div>
   );
