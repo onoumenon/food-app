@@ -34,9 +34,21 @@ class HomePage extends Component {
 
     const sortedFilteredRestaurantList = filteredRestaurantList.sort(
       (first, second) => {
-        if (first[selectedSort] < second[selectedSort]) return -1;
-        if (first[selectedSort] > second[selectedSort]) return 1;
-        return 0;
+        if (selectedSort === "averagePrice")
+          return first[selectedSort] - second[selectedSort];
+        else {
+          if (
+            first[selectedSort].toLowerCase() <
+            second[selectedSort].toLowerCase()
+          )
+            return -1;
+          if (
+            first[selectedSort].toLowerCase() >
+            second[selectedSort].toLowerCase()
+          )
+            return 1;
+          return 0;
+        }
       }
     );
 
