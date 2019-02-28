@@ -3,9 +3,9 @@ import React from "react";
 const FilterBar = props => {
   const { cuisines, selected, handleClick } = props;
   const getClass = (cuisine, selected) => {
-    if (!selected && cuisine.name === "All") return "btn btn-primary";
-    if (selected && cuisine._id === selected._id) return "btn btn-primary";
-    return "btn btn-outline-primary";
+    if (!selected && cuisine.name === "All") return "btn btn-secondary";
+    if (selected && cuisine._id === selected._id) return "btn btn-secondary";
+    return "btn btn-outline-secondary";
   };
 
   return (

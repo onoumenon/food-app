@@ -1,10 +1,9 @@
 import React from "react";
-import "./Restaurant.scss";
 
 function Restaurant(props) {
   const { details } = props;
   return (
-    <div className="card my-3">
+    <div className="card my-3" style={{ width: "20rem" }}>
       <img
         src={details.imageUrl}
         className="card-img-top img-fluid"
@@ -25,7 +24,7 @@ function Restaurant(props) {
       </div>
 
       <div className="card-footer text-muted">
-        <button className="btn btn-primary btn-sm mx-1">Order</button>
+        <button className="btn btn-secondary btn-sm mx-1">Order</button>
       </div>
     </div>
   );
