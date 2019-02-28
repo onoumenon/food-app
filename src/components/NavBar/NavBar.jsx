@@ -13,33 +13,37 @@ function NavBar() {
             DABAO
           </h5>
         </NavLink>
-
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <NavLink
-              to="/home"
-              className="nav-link font-weight-bold text-white"
-            >
-              Home <span className="sr-only">(current)</span>
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              to="/orders"
-              className="nav-link font-weight-bold text-white"
-            >
-              Orders
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              to="/admin"
-              className="nav-link font-weight-bold text-white"
-            >
-              Admin
-            </NavLink>
-          </li>
-        </ul>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <NavLink
+                to="/home"
+                className="nav-link font-weight-bold"
+                activeStyle={{ color: "white" }}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/orders"
+                className="nav-link font-weight-bold"
+                activeStyle={{ color: "white" }}
+              >
+                Orders
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/admin"
+                className="nav-link font-weight-bold"
+                activeStyle={{ color: "white" }}
+              >
+                Admin
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </nav>
     </div>
   );
