@@ -14,13 +14,13 @@ class App extends Component {
           <NavBar />
           <main className="container">
             <Switch>
+              <Route path="/restaurants/:id" component={RestaurantForm} />
               <Route
                 path="/restaurants/new"
                 render={props => (
                   <RestaurantForm {...props} returnPath="/admin" />
                 )}
               />
-              <Route path="/restaurants/:id" component={RestaurantForm} />
               <Route path="/home" component={HomePage} />
               <Route path="/orders" component={OrderPage} />
               <Route path="/admin" component={AdminPage} />
