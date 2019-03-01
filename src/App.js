@@ -15,13 +15,13 @@ class App extends Component {
           <main className="container">
             <Switch>
               <Route
-                path="/restaurants/:id"
+                path="/restaurants/new"
                 render={props => (
                   <RestaurantForm {...props} returnPath="/admin" />
                 )}
               />
               <Route
-                path="/restaurants/new"
+                path="/restaurants/:id"
                 render={props => (
                   <RestaurantForm {...props} returnPath="/admin" />
                 )}
