@@ -11,7 +11,9 @@ function SelectInput({ name, label, options, onChange, value, error }) {
         name={name}
         onChange={onChange}
       >
-        <option key="default">Choose one</option>
+        <option key="default" value="">
+          Choose one
+        </option>
         {options.map(option => (
           <option value={option._id} key={`${option._id}`}>
             {option.name}

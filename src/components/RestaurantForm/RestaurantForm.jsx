@@ -76,6 +76,10 @@ class RestaurantForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { cuisineId, averagePrice } = this.state.data;
+    const isInvalidForm = this.validateForm();
+    const errorStr = isInvalidForm.details
+      .map(error => error.message)
+      .join(", ");
     if (this.validateForm()) {
       return;
     }
@@ -174,12 +178,7 @@ class RestaurantForm extends Component {
             value={imageUrl}
             error={error.imageUrl}
           />
-          <button
-            className="btn btn-primary btn-sm"
-            disabled={this.validateForm()}
-          >
-            Save
-          </button>
+          <button className="btn btn-primary btn-sm">Save</button>
         </form>
       </div>
     );
