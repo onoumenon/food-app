@@ -4,7 +4,6 @@ import { getCuisines, getDefaultCuisine } from "../../services/cuisineService";
 import Restaurant from "../Restaurant/Restaurant";
 import FilterBar from "../FilterBar/FilterBar";
 import SortBySelect from "../SortBySelect/SortBySelect";
-import "./HomePage.scss";
 
 class HomePage extends Component {
   state = {
@@ -55,7 +54,7 @@ class HomePage extends Component {
     const filteredRestaurantList = this.filterAndSortRestaurantList();
 
     return (
-      <div data-testid="home-page" >  
+      <div data-testid="home-page">
         <div className="row">
           <div className="col-auto mr-auto">
             <FilterBar
@@ -76,7 +75,10 @@ class HomePage extends Component {
 
         <div className="row">
           {filteredRestaurantList.map(restaurant => (
-            <div className="card-col" key={restaurant._id}>
+            <div
+              className="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex"
+              key={restaurant._id}
+            >
               <Restaurant details={restaurant} />
             </div>
           ))}

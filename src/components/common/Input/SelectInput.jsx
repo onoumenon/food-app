@@ -1,6 +1,6 @@
 import React from "react";
 
-function SelectInput({ name, label, options, onChange, value }) {
+function SelectInput({ name, label, options, onChange, value, error }) {
   return (
     <div className="form-group">
       <label htmlFor={`${name}-input`}>{label}</label>
@@ -18,6 +18,11 @@ function SelectInput({ name, label, options, onChange, value }) {
           </option>
         ))}
       </select>
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { getCuisines } from "../../services/cuisineService";
-import { getRestaurants, saveRestaurant } from "../../services/restaurantService";
+import {
+  getRestaurants,
+  saveRestaurant
+} from "../../services/restaurantService";
 import Input from "../common/Input/Input";
 import TimeInput from "../common/Input/TimeInput";
 import SelectInput from "../common/Input/SelectInput";
+import * as Joi from "joi-browser";
 
 class RestaurantForm extends Component {
   state = {
@@ -11,23 +15,60 @@ class RestaurantForm extends Component {
     data: {
       name: "",
       address: "",
-      openingTime: "",
-      closingTime: "",
+      openingTime: "00:00",
+      closingTime: "00:00",
+      cuisineId: "",
+      averagePrice: "",
+      imageUrl: ""
+    },
+    error: {
+      name: "",
+      address: "",
       cuisineId: "",
       averagePrice: "",
       imageUrl: ""
     }
   };
 
+  schema = {
+    _id: Joi.string(),
+    name: Joi.string().required(),
+    address: Joi.string().required(),
+    cuisineId: Joi.string().required(),
+    openingTime: Joi.string().required(),
+    closingTime: Joi.string().required(),
+    averagePrice: Joi.number()
+      .integer()
+      .min(1)
+      .required(),
+    imageUrl: Joi.string()
+      .uri({
+        relativeOnly: true
+      })
+      .required()
+  };
+
+  validateForm = () => {
+    const options = { abortEarly: false };
+    const result = Joi.validate(this.state.data, this.schema, options);
+    return result.error;
+  };
+
+  validateField = (inputName, value) => {
+    const schema = { [inputName]: this.schema[inputName] };
+    const result = Joi.validate({ [inputName]: value }, schema);
+    return result.error;
+  };
+
   componentDidMount() {
-    const id  = this.props.match ? this.props.match.params.id : null;
+    const id = this.props.match ? this.props.match.params.id : null;
     const restaurantFound = getRestaurants().find(
       restaurant => restaurant._id === id
     );
     if (!restaurantFound) return;
-    const newRestaurant = {...restaurantFound}
-    newRestaurant.cuisineId = newRestaurant.cuisine._id
-    delete newRestaurant.cuisine
+    const newRestaurant = { ...restaurantFound };
+    newRestaurant.cuisineId = newRestaurant.cuisine._id;
+    delete newRestaurant.cuisine;
 
     this.setState({ data: newRestaurant });
   }
@@ -35,9 +76,13 @@ class RestaurantForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { cuisineId, averagePrice } = this.state.data;
+    if (this.validateForm()) {
+      return;
+    }
     const cuisine = getCuisines().find(cuisine => cuisine._id === cuisineId);
 
     let restaurant = { ...this.state.data };
+
     delete restaurant.cuisineId;
     restaurant.cuisine = cuisine;
     restaurant.averagePrice = parseFloat(averagePrice);
@@ -47,6 +92,15 @@ class RestaurantForm extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
+    const copy = { ...this.state.error };
+    const isInvalid = this.validateField(input.name, input.value);
+    if (isInvalid) {
+      copy[input.name] = isInvalid.details[0].message;
+      this.setState({ error: copy });
+    } else {
+      copy[input.name] = "";
+      this.setState({ error: copy });
+    }
     const data = { ...this.state.data };
     data[input.name] = input.value;
     this.setState({ data });
@@ -54,13 +108,37 @@ class RestaurantForm extends Component {
 
   render() {
     const { cuisines } = this.state;
-    const { name, address, openingTime, closingTime, cuisineId, averagePrice, imageUrl } = this.state.data;
+    const {
+      name,
+      address,
+      openingTime,
+      closingTime,
+      cuisineId,
+      averagePrice,
+      imageUrl
+    } = this.state.data;
+
+    const error = this.state.error;
     return (
       <div data-testid="create-page">
-        <h3>{ name ? "Edit Restaurant" : "New Restaurant"}</h3>
+        <h3>
+          {this.props.match.params.id ? "Edit Restaurant" : "New Restaurant"}
+        </h3>
         <form onSubmit={this.handleSubmit}>
-          <Input name="name" label="Name" onChange={this.handleChange} value={name}/>
-          <Input name="address" label="Address" onChange={this.handleChange} value={address}/>
+          <Input
+            name="name"
+            label="Name"
+            onChange={this.handleChange}
+            value={name}
+            error={error.name}
+          />
+          <Input
+            name="address"
+            label="Address"
+            onChange={this.handleChange}
+            value={address}
+            error={error.address}
+          />
           <TimeInput
             name="openingTime"
             label="Opening Time"
@@ -79,6 +157,7 @@ class RestaurantForm extends Component {
             options={cuisines}
             onChange={this.handleChange}
             value={cuisineId}
+            error={error.cuisineId}
           />
           <Input
             name="averagePrice"
@@ -86,14 +165,21 @@ class RestaurantForm extends Component {
             type="number"
             onChange={this.handleChange}
             value={averagePrice}
+            error={error.averagePrice}
           />
           <Input
             name="imageUrl"
             label="Image URL"
             onChange={this.handleChange}
             value={imageUrl}
+            error={error.imageUrl}
           />
-          <button className="btn btn-primary btn-sm">Save</button>
+          <button
+            className="btn btn-primary btn-sm"
+            disabled={this.validateForm()}
+          >
+            Save
+          </button>
         </form>
       </div>
     );
